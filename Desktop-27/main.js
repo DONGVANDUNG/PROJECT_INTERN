@@ -1,4 +1,4 @@
-//change option color of product
+//change option color of product;
 
 const selectColor = document.querySelector('.select-color');
 const imageProduct = document.querySelector('.product-image-demo');
@@ -11,7 +11,7 @@ selectColor.addEventListener("change", function () {
 })
 
 
-//change url of product image
+//change url of product image;
 const inputChangeImage = document.getElementById('select-img');
 const imageChange = document.querySelector('.product-image-demo');
 const frameAddImg = document.querySelector('.add-image');
