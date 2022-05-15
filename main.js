@@ -4,10 +4,10 @@ const selectColor = document.querySelector('.select-color');
 const imageProduct = document.querySelector('.product-image-demo');
 selectColor.addEventListener("change", function () {
     if (selectColor.value == 'black') {
-        imageProduct.style.backgroundImage = "url('../Desktop-27/images/black_short.webp')"
+        imageProduct.style.backgroundImage = "url('./images/black_short.webp')"
     }
     else
-        imageProduct.style.backgroundImage = "url('../Desktop-27/images/white-front\ 2.png')";
+        imageProduct.style.backgroundImage = "url('./images/white-front\ 2.png')";
 })
 
 
@@ -29,10 +29,10 @@ const btnFront = document.querySelector('.btn-view-front');
 const btnBack = document.querySelector('.btn-view-back');
 
 btnFront.addEventListener("click", function () {
-    imageChange.style.backgroundImage = "url('../Desktop-27/images/white-front\ 2.png')";
+    imageChange.style.backgroundImage = "url('./images/white-front\ 2.png')";
 })
 btnBack.addEventListener("click", function () {
-    imageChange.style.backgroundImage = "url('../Desktop-27/images/back_short.webp')"
+    imageChange.style.backgroundImage = "url('./images/back_short.webp')"
 })
 
 

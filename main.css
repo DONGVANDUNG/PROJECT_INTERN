@@ -22,7 +22,7 @@
 }
 
 .header-logo {
-    background: url('../Desktop-27/images/Full_Color.png');
+    background: url('./images/Full_Color.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -32,7 +32,7 @@
 }
 
 .header-avatar {
-    background: url('../Desktop-27/images/image.png');
+    background: url('./images/image.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -211,7 +211,7 @@
 .product-image-demo {
     width: 79%;
     height: 304px;
-    background-image: url('../Desktop-27/images/white-front\ 2.png');
+    background-image: url('./images/white-front\ 2.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
