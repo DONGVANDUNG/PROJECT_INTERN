@@ -4,7 +4,7 @@ const selectColor = document.querySelector('.select-color');
 const imageProduct = document.querySelector('.product-image-demo');
 selectColor.addEventListener("change", function () {
     if (selectColor.value == 'black') {
-        imageProduct.style.backgroundImage = "url('./images/black_short.webp')"
+        imageProduct.style.backgroundImage = "url('./images/black_short.webp')"s
     }
     else
         imageProduct.style.backgroundImage = "url('./images/white-front\ 2.png')";
