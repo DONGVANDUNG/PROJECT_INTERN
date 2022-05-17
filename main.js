@@ -67,7 +67,6 @@ inputChangeImage.addEventListener("change", e => {
         frameDownload.addEventListener('click', function () {
             let imagePath = imageChange.style.backgroundImage;
             let imagePathAfterSlice = imagePath.slice(4, imagePath.length - 1);
-            console.log(imagePathAfterSlice);
             let fileName = getFileName(imagePathAfterSlice);
             saveAs(imagePathAfterSlice, fileName);
         })
@@ -139,9 +138,11 @@ const inputAddImages = document.getElementById('add-images');
 const labelImages = document.querySelector('.label-add-images');
 const titleAddImages = document.querySelector('.span-title-add-img');
 const titleImg = document.querySelector('.title-img');
+let numberImg = 0;
 inputAddImages.addEventListener("change", e => {
-    const numberImage = e.target.files.length;
-    if (numberImage > 0 && numberImage <= 9) {
+    numberImg += e.target.files.length;
+    const numberImages = e.target.files.length;
+    if (numberImg > 0 && numberImg <= 9) {
         labelImages.style.display = 'none';
         titleAddImages.style.display = 'none';
         frameAddImages.style.border = 'none';
@@ -149,7 +150,15 @@ inputAddImages.addEventListener("change", e => {
         frameAddImages.style.flexDirection = 'row';
         frameAddImages.style.alignItems = 'flex-start';
         frameAddImages.style.justifyContent = 'flex-start';
-        for (let i = 0; i < numberImage; i++) {
+        frameAddImages.style.height = '40%'
+
+        const labelAdd = document.createElement('label');
+        labelAdd.setAttribute('for', 'add-images');
+        const btnAdd = document.createElement('div');
+        btnAdd.classList = 'btn-addition';
+        btnAdd.textContent = 'Thêm ảnh';
+        labelAdd.appendChild(btnAdd);
+        for (let i = 0; i < numberImages; i++) {
             const src = URL.createObjectURL(e.target.files[i]);
 
             const item = document.createElement("div");
@@ -163,15 +172,38 @@ inputAddImages.addEventListener("change", e => {
             frameExit.appendChild(icon_exit);
             item.appendChild(frameExit);
             frameAddImages.appendChild(item);
+            frameAddImages.appendChild(labelAdd);
         }
-        titleImg.textContent = `Ảnh sản phẩm (${numberImage}/9)`
+        //display add image
+        if (numberImg >= 9) {
+            btnAdd.style.display = 'none';
+            console.log(numberImg)
+        } else if (numberImg < 9) {
+            console.log(numberImages)
+            btnAdd.style.display = 'flex';
+        }
+        titleImg.textContent = `Ảnh sản phẩm (${numberImg}/9)`
         //set event click exit
         const exit = document.querySelectorAll('.frame-exit');
-        console.log(exit);
         Array.from(exit).forEach(e => {
-            console.log(e);
             e.addEventListener('click', function () {
-                e.parentElement.style.display = 'none';
+                numberImg--;
+                e.parentElement.remove();
+                titleImg.textContent = `Ảnh sản phẩm (${numberImg}/9)`;
+                if (numberImg == 0) {
+                    labelImages.style.display = 'block';
+                    titleAddImages.style.display = 'block';
+                    frameAddImages.style.border = '1px dashed #6B7075';
+                    frameAddImages.style.width = '30%';
+                    frameAddImages.style.display = 'flex';
+                    frameAddImages.style.justifyContent = 'center';
+                    frameAddImages.style.alignItems = 'center';
+                    frameAddImages.style.flexDirection = 'column';
+                    labelAdd.style.display = 'none'
+                }
+                if (numberImg < 9) {
+                    btnAdd.style.display = 'flex';
+                }
             })
         })
     }
