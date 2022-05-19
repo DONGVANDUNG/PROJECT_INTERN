@@ -140,9 +140,8 @@ const titleAddImages = document.querySelector('.span-title-add-img');
 const titleImg = document.querySelector('.title-img');
 let numberImg = 0;
 inputAddImages.addEventListener("change", e => {
-    numberImg += e.target.files.length;
     const numberImages = e.target.files.length;
-    if (numberImg > 0 && numberImg <= 9) {
+    if (numberImg >= 0 && numberImg <= 9) {
         labelImages.style.display = 'none';
         titleAddImages.style.display = 'none';
         frameAddImages.style.border = 'none';
@@ -174,27 +173,28 @@ inputAddImages.addEventListener("change", e => {
             frameAddImages.appendChild(item);
             frameAddImages.appendChild(labelAdd);
         }
+        numberImg = document.querySelectorAll('.frame-exit').length;
+
         //display add image
-        if (numberImg >= 9) {
+        if (numberImg >= 9 || numberImages >= 9) {
             btnAdd.style.display = 'none';
-            console.log(numberImg)
         } else if (numberImg < 9) {
-            console.log(numberImages)
             btnAdd.style.display = 'flex';
         }
         titleImg.textContent = `Ảnh sản phẩm (${numberImg}/9)`
         //set event click exit
         const exit = document.querySelectorAll('.frame-exit');
-        Array.from(exit).forEach(e => {
-            e.addEventListener('click', function () {
-                numberImg--;
-                e.parentElement.remove();
+        Array.from(exit).forEach(item => {
+            item.addEventListener('click', function () {
+                item.parentElement.remove();
+                numberImg = document.querySelectorAll('.frame-exit').length;
                 titleImg.textContent = `Ảnh sản phẩm (${numberImg}/9)`;
-                if (numberImg == 0) {
+                if (numberImg === 0) {
                     labelImages.style.display = 'block';
                     titleAddImages.style.display = 'block';
                     frameAddImages.style.border = '1px dashed #6B7075';
                     frameAddImages.style.width = '30%';
+                    frameAddImages.style.height = '130px';
                     frameAddImages.style.display = 'flex';
                     frameAddImages.style.justifyContent = 'center';
                     frameAddImages.style.alignItems = 'center';
